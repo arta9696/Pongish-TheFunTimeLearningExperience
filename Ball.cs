@@ -11,9 +11,10 @@ using System.Windows.Shapes;
 
 namespace Pongish
 {
-    internal class Ball
+    internal class Ball: IDisposable
     {
         Ellipse Geometry { get; set; }
+        Canvas _canvas;
         public Vector Position { 
             get { 
                 return new Vector(Canvas.GetLeft(Geometry), Canvas.GetTop(Geometry)); 
@@ -37,11 +38,17 @@ namespace Pongish
             Canvas.SetLeft(Geometry, position.X);
             Speed = speed;
             canvas.Children.Add(Geometry);
+            _canvas = canvas;
         }
         public void Move(double deltaTime)
         {
             Canvas.SetTop(Geometry, Canvas.GetTop(Geometry) + Speed.Y*deltaTime);
             Canvas.SetLeft(Geometry, Canvas.GetLeft(Geometry) + Speed.X*deltaTime);
+        }
+
+        public void Dispose()
+        {
+            _canvas.Children.Remove(Geometry);
         }
     }
 }

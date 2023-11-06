@@ -10,9 +10,10 @@ using System.Windows.Shapes;
 
 namespace Pongish
 {
-    internal class Pad
+    internal class Pad: IDisposable
     {
         Rectangle Geometry { get; set; }
+        Canvas _canvas;
         public Vector Position
         {
             get
@@ -37,12 +38,18 @@ namespace Pongish
             Canvas.SetTop(Geometry, position.Y);
             Canvas.SetLeft(Geometry, position.X);
             canvas.Children.Add(Geometry);
+            _canvas = canvas;
         }
 
         public void Move(Vector direction, double deltaTime)
         {
             Canvas.SetTop(Geometry, Canvas.GetTop(Geometry)+direction.Y * deltaTime);
             Canvas.SetLeft(Geometry, Canvas.GetLeft(Geometry) + direction.X * deltaTime);
+        }
+
+        public void Dispose()
+        {
+            _canvas.Children.Remove(Geometry);
         }
     }
 }

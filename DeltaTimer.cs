@@ -32,6 +32,11 @@ namespace Pongish
                 return ret;
             } }
 
+        public DeltaTimer()
+        {
+            deltatimes.Add(0);
+        }
+
         public void Start()
         {
             updateTimer.Start();

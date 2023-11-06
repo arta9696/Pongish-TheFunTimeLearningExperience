@@ -9,12 +9,7 @@
     <Grid>
         <Canvas x:Name="canvas">
         </Canvas>
-        <Label x:Name="FPSLabel" Content="Label" Margin="10,10,0,0" Foreground="White"/>
-        <StackPanel x:Name="welcomePanel" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Welcome to Your Game" FontSize="24" Margin="0,0,0,20"/>
-            <Button Content="Start Game" Width="150" Click="StartGame_Click"/>
-            <Button Content="Settings" Width="150" Click="Settings_Click"/>
-            <Button Content="Quit" Width="150" Click="Quit_Click"/>
-        </StackPanel>
+        <Label x:Name="FPSLabel" Content="" Margin="10,10,0,0" Foreground="#FF00FF10" Visibility="Hidden"/>
+        <local:StartScreen x:Name="startScreen"/>
     </Grid>
 </Window>
